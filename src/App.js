@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import ShowcaseItem from "./showcase-item";
+import React, { Component } from "react"
+import ShowcaseItem from "./showcase-item"
+import SearchField from "./search-field"
+import "./styles.scss"
 
 class App extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       products: [],
       filterText: null,
       cart: []
-    };
+    }
   }
 
   componentDidMount() {
@@ -18,44 +20,45 @@ class App extends Component {
         this.setState({
           products: res
         })
-      );
+      )
   }
 
   handleClick(product) {
     this.setState({
       cart: [...this.state.cart, product]
-    });
+    })
   }
 
   handleRemove(id) {
     this.setState({
       cart: this.state.cart.filter(item => item.id !== id)
-    });
+    })
   }
 
   handleSearch(e) {
     this.setState({
       filterText: e.target.value
-    });
+    })
   }
 
   isFilteredItem(query) {
     return !(
       this.state.filterText &&
       query.toLowerCase().indexOf(this.state.filterText.toLowerCase()) === -1
-    );
+    )
   }
 
   render() {
     return (
       <div>
-        <h1>Emoji Shop</h1>
-        <input
-          onChange={this.handleSearch.bind(this)}
-          type="search"
-          placeholder="Buscar..."
-          value={this.state.filterText || ""}
-        />
+        <div className="header">
+          <h1 className="header-title">Emoji Shop</h1>
+          <SearchField
+            handleSearch={this.handleSearch.bind(this)}
+            value={this.state.filterText}
+            placeholder="Buscar..."
+          />
+        </div>
         <div style={{ display: "flex" }}>
           <div style={{ display: "flex", flexWrap: "wrap", width: "80vw" }}>
             {this.state.products.map(
@@ -100,8 +103,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
