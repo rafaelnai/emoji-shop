@@ -1,16 +1,17 @@
-import React, { Component } from "react"
-import ShowcaseItem from "./showcase-item"
-import SearchField from "./search-field"
-import "./styles.scss"
+import React, { Component } from "react";
+import ShowcaseItem from "./showcase-item";
+import SearchField from "./search-field";
+import "./styles.scss";
+import Cart from "./cart/cart";
 
 class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       products: [],
       filterText: null,
       cart: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -20,32 +21,32 @@ class App extends Component {
         this.setState({
           products: res
         })
-      )
+      );
   }
 
   handleClick(product) {
     this.setState({
       cart: [...this.state.cart, product]
-    })
+    });
   }
 
   handleRemove(id) {
     this.setState({
       cart: this.state.cart.filter(item => item.id !== id)
-    })
+    });
   }
 
   handleSearch(e) {
     this.setState({
       filterText: e.target.value
-    })
+    });
   }
 
   isFilteredItem(query) {
     return !(
       this.state.filterText &&
       query.toLowerCase().indexOf(this.state.filterText.toLowerCase()) === -1
-    )
+    );
   }
 
   render() {
@@ -60,7 +61,7 @@ class App extends Component {
           />
         </div>
         <div style={{ display: "flex" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", width: "80vw" }}>
+          <div className="showcase">
             {this.state.products.map(
               product =>
                 this.isFilteredItem(product.name) && (
@@ -75,36 +76,14 @@ class App extends Component {
                 )
             )}
           </div>
-          <div
-            style={{
-              position: "fixed",
-              right: 30,
-              height: "70vh",
-              overflow: "auto",
-              top: 110,
-              border: "1px solid #ccc",
-              padding: 15,
-              borderRadius: 5,
-              textAlign: "center",
-              width: 250
-            }}
-          >
-            <h2>Carrinho</h2>
-            {this.state.cart.map(item => (
-              <ShowcaseItem
-                key={item.id}
-                name={item.name}
-                image={item.image}
-                price={item.price}
-                label="Remover do carrinho"
-                handleClick={() => this.handleRemove(item.id)}
-              />
-            ))}
-          </div>
+          <Cart
+            list={this.state.cart}
+            handleRemove={this.handleRemove.bind(this)}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
