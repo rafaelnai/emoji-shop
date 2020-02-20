@@ -2,11 +2,12 @@ import React from "react";
 import ShowcaseItem from "../showcase-item";
 
 export default function Cart(props) {
-  const { list, handleRemove } = props;
+  const { list, handleRemove, total } = props;
 
   return (
     <aside className="cart">
       <h2>Carrinho</h2>
+      <h4>Total: R$ {total}</h4>
       {list.map(item => (
         <ShowcaseItem
           key={item.id}

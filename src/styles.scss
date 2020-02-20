@@ -3,15 +3,12 @@ body {
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  width: 75vw;
   align-items: baseline;
-  margin: 0 -10px;
+  width: calc(100vw - 300px);
 }
 
 .header-title {
-  margin-left: 20px;
+  flex-grow: 1;
 }
 
 .cart {
@@ -29,8 +26,7 @@ body {
 .showcase {
   display: flex;
   flex-wrap: wrap;
-  width: 75vw;
-  justify-content: space-between;
+  margin: 0 -10px;
 }
 
 .showcase-item {
@@ -38,9 +34,17 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 200px;
+  min-width: 200px;
+  width: calc(100% / 7);
   margin: 10px;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 300px);
+  align-items: baseline;
 }

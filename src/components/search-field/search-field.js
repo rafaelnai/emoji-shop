@@ -1,8 +1,8 @@
-import React from "react"
-import "./styles.scss"
+import React from "react";
+import "./styles.scss";
 
 export default function SearchField(props) {
-  const { handleSearch, value, placeholder } = props
+  const { handleSearch, value, placeholder } = props;
 
   return (
     <input
@@ -12,5 +12,5 @@ export default function SearchField(props) {
       placeholder={placeholder}
       value={value}
     />
-  )
+  );
 }
