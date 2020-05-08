@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ShowcaseItem(props) {
+function ShowcaseItem(props) {
   const { name, image, price, handleClick, label, disabled } = props;
 
   return (
@@ -14,3 +14,5 @@ export default function ShowcaseItem(props) {
     </div>
   );
 }
+
+export default React.memo(ShowcaseItem);

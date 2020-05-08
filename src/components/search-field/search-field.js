@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 
-export default function SearchField(props) {
+function SearchField(props) {
   const { handleSearch, value, placeholder } = props;
 
   return (
@@ -14,3 +14,5 @@ export default function SearchField(props) {
     />
   );
 }
+
+export default React.memo(SearchField);

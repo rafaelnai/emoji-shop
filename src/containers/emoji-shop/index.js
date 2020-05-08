@@ -1,1 +1,1 @@
-export { default } from "./emohi-shop";
+export { default } from "./hooks-emoji-shop";
